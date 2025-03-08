@@ -1,83 +1,108 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffe4e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
     text-align: center;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    color: #333;
-    padding: 50px;
-    overflow: hidden;
+    padding: 10px;
 }
 
 .container {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
 }
 
-button {
-    background: #ff758c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+h1 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
     margin-top: 10px;
 }
 
-button:hover {
-    background: #e86a82;
+button {
+    background-color: #ff69b4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .letter {
-    display: none; /* Đảm bảo thư ẩn từ đầu */
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .letter-content {
     text-align: left;
 }
 
-/* Hiệu ứng gõ chữ */
-.typewriter {
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: 2px;
-    border-right: 2px solid #ff758c;
-    display: inline-block;
-    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+.letter button {
+    width: 100%;
+    margin-top: 10px;
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+/* Hiệu ứng trái tim & hoa bay */
+.floating-item {
+    position: fixed;
+    top: 0;
+    font-size: 24px;
+    opacity: 0.8;
+    animation: fall 5s linear infinite;
+    user-select: none;
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #ff758c; }
-}
-
-/* Trái tim bay */
-.heart {
-    position: absolute;
-    color: red;
-    font-size: 20px;
-    animation: float 4s infinite linear;
-    opacity: 0.7;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100vh); opacity: 0; }
+@keyframes fall {
+    0% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
 }

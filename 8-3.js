@@ -1,30 +1,33 @@
- {
-    // Đảm bảo chỉ hiển thị lời chúc ban đầu, thư ẩn
-    document.getElementById('letter').style.display = 'none';
-};
+document.addEventListener("DOMContentLoaded", function () {
+    const letter = document.getElementById("letter");
+    const greeting = document.getElementById("greeting");
 
-function openLetter() {
-    document.getElementById('letter').style.display = 'block'; // Hiện thư
-    document.getElementById('greeting').style.display = 'none'; // Ẩn chúc mừng 8/3
-}
+    window.openLetter = function () {
+        letter.style.display = "block";
+        greeting.style.display = "none"; // Ẩn phần chúc mừng khi mở thư
+    };
 
-function closeLetter() {
-    document.getElementById('letter').style.display = 'none'; // Ẩn thư đi
-    document.getElementById('greeting').style.display = 'block'; // Hiện lại chúc mừng 8/3 nếu muốn
-}
+    window.closeLetter = function () {
+        letter.style.display = "none";
+        greeting.style.display = "flex"; // Hiển thị lại phần chúc mừng sau khi đóng thư
+    };
 
-// Tạo trái tim bay
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.innerHTML = '❤️';
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    document.body.appendChild(heart);
+    // Tạo hiệu ứng trái tim rơi
+    setInterval(() => createFloatingItem("❤️"), 500);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 4000);
-}
+    // Tạo hiệu ứng hoa bay
+    setInterval(() => createFloatingItem("🌸"), 700);
 
-setInterval(createHeart, 500);
+    function createFloatingItem(symbol) {
+        const item = document.createElement("div");
+        item.classList.add("floating-item");
+        item.innerText = symbol;
+        item.style.left = Math.random() * window.innerWidth + "px";
+        item.style.animationDuration = Math.random() * 3 + 2 + "s"; // 2-5 giây
+        document.body.appendChild(item);
+
+        setTimeout(() => {
+            item.remove();
+        }, 5000);
+    }
+});
